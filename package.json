@@ -1,0 +1,16 @@
+{
+  "name": "widget",
+  "version": "1.0.0",
+  "description": "Currency exchange react.js widget",
+  "main": "index.html",
+  "scripts": {
+    "run-widget": "concurrently \"cd widget && BROWSER=none yarn start\"  \"wait-on http://localhost:3000 && http-server\""
+  },
+  "author": "Justina Zlabyte",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "5.2.0",
+    "http-server": "0.12.3",
+    "wait-on": "5.0.0"
+  }
+}
