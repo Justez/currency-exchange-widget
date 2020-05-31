@@ -23,17 +23,28 @@ export default createMuiTheme({
             overflowX: 'hidden',
             overflowY: 'auto',
           },
+          img: {
+            height: '0.7rem',
+
+          },
           footer: {
           },
         },
       },
-      MuiSvgIcon: {
-        root: {
-          height: '1rem',
-        }
-      },
       MuiSelect: {
         select: {
+          paddingRight: 0
+        }
+      },
+      MuiChip: {
+        root: {
+          '&:hover': {
+            cursor: 'pointer'
+          }
+        },
+        label: {
+          minWidth: 0,
+          paddingLeft: 0,
           paddingRight: 0
         }
       }

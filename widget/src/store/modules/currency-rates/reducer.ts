@@ -10,7 +10,10 @@ export interface DefaultState {
 }
 
 export const defaultState: DefaultState = {
-  currencyRates: null,
+  currencyRates: { // TODO SET 1:1
+    rate: '1.44',
+    reverse: '0.83'
+  }
 };
 
 type Payload = any;

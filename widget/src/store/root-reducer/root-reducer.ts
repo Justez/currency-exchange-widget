@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import currencyRatesReducer from '../modules/currency-exchange/reducer'
-import pocketsReducer from '../modules/pockets/reducer'
-import currenciesReducer from '../modules/currencies/reducer'
+import currencyRatesReducer from 'store/modules/currency-rates/reducer'
+import pocketsReducer from 'store/modules/pockets/reducer'
+import currenciesReducer from 'store/modules/currencies/reducer'
 
 const appReducer = () =>
   combineReducers({

@@ -11,7 +11,7 @@ export interface DefaultState {
 
 export const defaultState: DefaultState = {
   currencies: {
-    in: CurrencyMap.euro,
+    in: CurrencyMap.dollar,
     out: CurrencyMap.pound,
   },
 };

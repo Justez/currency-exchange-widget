@@ -8,6 +8,7 @@ import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
 import { getPockets } from 'store/modules/pockets/selectors';
 import { State } from 'store';
 import { find, propEq, pathOr, pipe } from 'ramda'
+import mapIcons from 'helpers/mapIcons'
 
 interface DispatchProps {
     actions: {
@@ -28,7 +29,7 @@ type Props = DispatchProps & StateProps & OwnProps
 
 const CurrencySelect = ({ actions, pockets, currencies, indicator }: Props) => {
     const selectedCurrency = currencies[indicator];
-    const setSelectedCurrency = (event: ChangeEvent<{ value: unknown; }>) => 
+    const setSelectedCurrency = (event: ChangeEvent<{ value: unknown; }>) =>
         actions.currencies.setSelectedCurrency({ [indicator]: event.target.value })
 
     const getPocketFromSelected = pipe(
@@ -47,14 +48,16 @@ const CurrencySelect = ({ actions, pockets, currencies, indicator }: Props) => {
                 >
                     {pockets.map(({ currency }) => (
                         <MenuItem key={currency} value={currency}>
-                            {currency.toUpperCase()}
+                            <Typography variant="h5">
+                                {currency.toUpperCase()}
+                            </Typography>
                         </MenuItem>
                     ))}
                 </Select>
             </Grid>
             <Grid item>
-                <Typography variant="caption">
-                    Balance{' '}{getPocketFromSelected}
+                <Typography>
+                    Balance{' '}{getPocketFromSelected}{mapIcons(selectedCurrency)}
                 </Typography>
             </Grid>
         </Grid>

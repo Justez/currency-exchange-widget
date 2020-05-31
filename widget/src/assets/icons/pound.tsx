@@ -1,12 +1,5 @@
 import React from 'react'
-import { SvgIcon } from '@material-ui/core';
 
 export default () => (
-    <SvgIcon>
-        <path
-            xmlns="http://www.w3.org/2000/svg"
-            d="M 8.5 1 C 6.572833 1 5 2.572833 5 4.5 C 5 5.2643222 5.1980285 6.1199449 5.4082031 7 L 4 7 L 4 8 L 5.6289062 8 C 5.8265204 8.8709901 6 9.740308 6 10.5 C 6 11.484416 6.019926 12.179261 5.2773438 13 L 4 13 L 4 14 L 12 14 L 12 12 L 11 12 L 11 13 L 6.5039062 13 C 6.9798279 12.146577 7 11.280562 7 10.5 C 7 9.6731448 6.8363755 8.8274278 6.6523438 8 L 10 8 L 10 7 L 6.4335938 7 C 6.2053856 6.0372454 6 5.137182 6 4.5 C 6 3.113167 7.113167 2 8.5 2 C 9.5900429 2 10.500992 2.6972681 10.845703 3.6679688 L 11.787109 3.3320312 C 11.305821 1.976732 10.017957 1 8.5 1 z" 
-            font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"
-        />
-    </SvgIcon>
+    <img alt='pound' src="https://upload.wikimedia.org/wikipedia/commons/d/de/Open_Iconic_british_pound.svg" />
 )
