@@ -1,31 +1,42 @@
-import { all, take, put, /*call*/ } from 'redux-saga/effects';
+import { 
+  all, 
+  // take, 
+  // put, 
+  // call, 
+  // delay 
+} from 'redux-saga/effects';
 
-// import { getCurrencyRates } from 'api/currency-rates';
+// import { getCurrencyRates } from '../../../api/currency-rates';
 
-import { actions } from '.';
+// import { actions } from '.';
 
-export function* getCurrencyRatesFlow() {
-  while (true) {
-    yield take(actions.getCurrencyRates);
+// export function* startPollingCurrencyRatesFlow() {
+//   while (true) {
+//     yield take(actions.startPollingCurrencyRates);
+//     // set polling true
 
-    yield put(actions.getCurrencyRatesRequest());
+//     yield put(actions.getCurrencyRatesRequest());
 
-    //@ts-ignore
-    const { error, response } = {}// yield call(getCurrencyRates);
+//     while (true) {
+//       // TODO retrieve selected currencies and polling status
+//       yield delay(10000);
+//       const response = yield call(getCurrencyRates);
+//       console.log(response)
+//     // if (!error) {
+//     //   yield put(actions.setCurrencyRates({
+//     //     payload: response// TODO get exact format,
+//     //   }));
+//     // }
+//       // break if polling is stopped
+//     }
 
-    if (!error) {
-      yield put(actions.getCurrencyRatesSuccess());
-      yield put(actions.setCurrencyRates({
-        payload: response// TODO get exact format,
-      }));
-    } else {
-      yield put(actions.getCurrencyRatesFailure());
-    }
-  }
-}
+//   }
+// }
+
+// TODO add watcher
 
 export default function* saga() {
   yield all([
-    getCurrencyRatesFlow(),
+    // startPollingCurrencyRatesFlow(),
   ]);
 }

@@ -1,11 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid, Button } from '@material-ui/core'
+import CurrencySelect from '../../components/currency-select'
+import { CurrencyExchangeTypes } from 'types'
 
 const useStyles = makeStyles((theme) => ({
     root: {
 
     },
+    pick: {
+
+    }
 }));
 
 const InputCurrencyTemplate = () => {
@@ -16,14 +21,15 @@ const InputCurrencyTemplate = () => {
             <Grid container direction="column" spacing={2}>
                 <Grid item xs={12} container direction="row" justify="flex-end" className={classes.root}>
                     <Grid item>
-                        Exchange
+                        <Button variant="outlined">
+                            Exchange
+                        </Button>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    Main
-                </Grid>
+                <CurrencySelect indicator={CurrencyExchangeTypes.out} />
             </Grid>
         </Box>
     )
 }
-export default InputCurrencyTemplate
+
+export default InputCurrencyTemplate;

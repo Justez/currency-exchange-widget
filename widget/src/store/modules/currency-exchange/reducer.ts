@@ -1,12 +1,12 @@
 import { handleActions } from 'redux-actions';
-// import { assocPath } from 'ramda';
+import { assocPath } from 'ramda';
 
-// import type { rates } from 'types/api';
+import { CurrencyRates } from 'types';
 
-// import { actions } from '.';
+import { actions } from '.';
 
 export interface DefaultState {
-  // currencyRates: rates;
+  currencyRates: CurrencyRates;
 }
 
 export const defaultState: DefaultState = {
@@ -18,8 +18,12 @@ type Payload = any;
 export const initializedState = {};
 
 const reducer = handleActions<DefaultState, Payload>({
-  // [actions.setCurrencyRates.toString()]: (state, { payload }) =>
-  //     assocPath(['currencyRates'], payload.payload, state),
+  [actions.setCurrencyRates.toString()]: (state, { payload }) =>
+    assocPath(['currencyRates'], payload.payload, state),
+  [actions.startPollingCurrencyRates.toString()]: (state) =>
+    assocPath(['currencyRates', 'polling'], true, state),
+  [actions.stopPollingCurrencyRates.toString()]: (state) =>
+    assocPath(['currencyRates', 'polling'], false, state)
 },
   defaultState,
 );

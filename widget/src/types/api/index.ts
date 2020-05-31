@@ -1,1 +1,0 @@
-export * as rates from './rates'

@@ -8,6 +8,11 @@ export default createMuiTheme({
         dark: blue[800],
         light: blueGrey['A200'],
       },
+      secondary: {
+        light: blueGrey[50],
+        main: blue[900],
+        dark: blueGrey[100]
+      }
     },
     overrides: {
       MuiCssBaseline: {
@@ -17,7 +22,6 @@ export default createMuiTheme({
           body: {
             overflowX: 'hidden',
             overflowY: 'auto',
-            color: '#fff'
           },
           footer: {
           },
