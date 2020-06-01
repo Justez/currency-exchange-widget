@@ -1,7 +1,10 @@
 import axios from 'axios'
 
-const URL = 'https://reqres.in/api/users?page=2'
+import { Currencies } from 'types';
 
-export const getCurrencyRates = () => axios.get(URL)
+const URL = 'https://reqres.in/api/users?page=2'
+// TODO consume currencies
+//@ts-ignore
+export const getCurrencyRates = (obj: Currencies, checksum: string) => axios.get(URL+'&checksum='+checksum)
     .then(res => res.data)
     .catch(err => err)

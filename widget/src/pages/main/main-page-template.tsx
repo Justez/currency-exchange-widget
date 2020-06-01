@@ -6,12 +6,15 @@ import { Dispatch, bindActionCreators } from 'redux';
 import OutCurrencyTemplate from '../../functional-components/out-currency-template'
 import InCurrencyTemplate from '../../functional-components/in-currency-template'
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
+import { actions as currenciesActions } from 'store/modules/currencies';
+
 import RateChip from 'components/rate-chip';
 import FlipChip from 'components/flip-chip';
 
 interface DispatchProps {
   actions: {
     currencyRates: typeof currencyRatesActions;
+    currencies: typeof currenciesActions;
   };
 }
 
@@ -32,8 +35,13 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
   const classes = useStyles();
 
   useEffect(() => {
-    actions.currencyRates.startPollingCurrencyRates()
+    actions.currencyRates.registerChecksum()
   })
+
+  const handleFlip = () => {
+    actions.currencyRates.flipRates()
+    actions.currencies.flipSelectedCurrencies()
+  }
 
   return (
     <Grid container direction="column" className={classes.root}>
@@ -43,7 +51,7 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
       <Grid item container direction="column" className={classes.second}>
         <Grid item container direction="row" justify="flex-start">
           <Grid item container justify="center" xs={3}>
-            <FlipChip />
+            <FlipChip onFlip={handleFlip} />
           </Grid>
           <Grid item container justify="center" xs={6}>
             <RateChip />
@@ -60,6 +68,7 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   actions: {
     currencyRates: bindActionCreators(currencyRatesActions, dispatch),
+    currencies: bindActionCreators(currenciesActions, dispatch),
   },
 });
 

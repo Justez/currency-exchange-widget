@@ -38,7 +38,7 @@ const CurrencySelect = ({ actions, pockets, currencies, indicator }: Props) => {
     )(pockets)
 
     return (
-        <Grid item container direction="column" spacing={2}>
+        <Grid container direction="column" spacing={2}>
             <Grid item>
                 <Select
                     autoWidth

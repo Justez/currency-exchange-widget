@@ -1,42 +1,63 @@
-import { 
-  all, 
-  // take, 
-  // put, 
-  // call, 
-  // delay 
+import {
+  all,
+  takeLatest,
+  put,
+  select,
+  race,
+  call,
+  take,
 } from 'redux-saga/effects';
+import delay from '@redux-saga/delay-p'
 
-// import { getCurrencyRates } from '../../../api/currency-rates';
+import { actions as currencyActions } from 'store/modules/currencies';
+import { getSelectedCurrencies } from 'store/modules/currencies/selectors'
+import { getChecksum } from './selectors'
+import { actions } from 'store/modules/currency-rates';
+import { getCurrencyRates } from 'api/currency-rates'
 
-// import { actions } from '.';
+function* getCurrencyRatesFlow() {
+  try {
+    const checksum = yield select(getChecksum)
+    yield put({ type: actions.getCurrencyRatesRequest.toString() })
+    const selectedCurrencies = yield select(state => getSelectedCurrencies(state))
 
-// export function* startPollingCurrencyRatesFlow() {
-//   while (true) {
-//     yield take(actions.startPollingCurrencyRates);
-//     // set polling true
+    const { response } = yield race({ response: call(getCurrencyRates, selectedCurrencies, checksum), cancel: take(actions.registerChecksum.toString()) })
+    if (response) { // TODO parse data forward
+      yield put({ type: actions.setCurrencyRates.toString(), payload: response.data })
+      yield put({ type: actions.getCurrencyRatesSuccess.toString() })
+    } else {
+      yield put({ type: actions.getCurrencyRatesFailure.toString() })
+      yield put({ type: actions.getCurrencyRates.toString() })
+    }
+    
+    yield delay(50000)
+    yield put({ type: actions.getCurrencyRates.toString() })
+  } catch (error) {
+  }
+}
 
-//     yield put(actions.getCurrencyRatesRequest());
+function* pollRates() {
+  try {
+    yield put({ type: actions.getCurrencyRates.toString() })
+  } catch (error) {
+  }
+}
 
-//     while (true) {
-//       // TODO retrieve selected currencies and polling status
-//       yield delay(10000);
-//       const response = yield call(getCurrencyRates);
-//       console.log(response)
-//     // if (!error) {
-//     //   yield put(actions.setCurrencyRates({
-//     //     payload: response// TODO get exact format,
-//     //   }));
-//     // }
-//       // break if polling is stopped
-//     }
+function* registerCheckSum() {
+  try {
+    yield put({ type: actions.registerChecksum.toString() })
+  } catch (error) {
+  }
+}
 
-//   }
-// }
-
-// TODO add watcher
+function* watchCurrencyPairChanged() {
+  yield takeLatest([currencyActions.setSelectedCurrency, currencyActions.flipSelectedCurrencies], registerCheckSum)
+}
 
 export default function* saga() {
   yield all([
-    // startPollingCurrencyRatesFlow(),
+    watchCurrencyPairChanged(),
+    takeLatest(actions.registerChecksum, pollRates),
+    takeLatest(actions.getCurrencyRates, getCurrencyRatesFlow)
   ]);
 }

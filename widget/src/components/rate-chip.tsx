@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Chip, Typography } from '@material-ui/core'
 import { Currencies, CurrencyRates } from 'types'
@@ -14,7 +14,6 @@ interface StateProps {
     currencyRates: CurrencyRates
 }
 
-
 interface OwnProps {
 }
 
@@ -28,14 +27,25 @@ const useStyles = makeStyles((theme) => ({
 
 const RateChip = ({ currencies, currencyRates }: Props) => {
     const classes = useStyles();
+    
+    const [reverse, setReverse] = useState(false)
+
     const label = (
         <Typography className={classes.label}>
             1{mapIcons(currencies.out)} = {currencyRates.rate}{mapIcons(currencies.in)}
         </Typography>
     )
 
+    const labelReverse = (
+        <Typography className={classes.label}>
+            {currencyRates.reverse}{mapIcons(currencies.out)} = 1{mapIcons(currencies.in)}
+        </Typography>
+    )
+
+    const toggleReverseRates = () => setReverse(!reverse)
+
     return (
-        <Chip label={label} avatar={<TrendingUp />} variant="outlined" />
+        <Chip label={reverse ? labelReverse : label} avatar={<TrendingUp />} variant="outlined" onClick={toggleReverseRates} />
     )
 }
 
