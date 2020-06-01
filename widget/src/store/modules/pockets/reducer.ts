@@ -1,15 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { assocPath } from 'ramda';
+import { assocPath, includes } from 'ramda';
 
-import { Pockets, CurrencyMap, CurrencyExchangeTypes } from 'types';
+import { Pockets, CurrencyMap, Pocket } from 'types';
 
 import { actions } from '.';
-import { filterPocketByCurrency } from './selectors'
-import { getOppositeDirection, getCurrencyByDirection } from 'store/modules/currencies/selectors'
-
-import calcRate from 'helpers/calcRate'
-import parseNum from 'helpers/parseNum'
-
 export type DefaultState = Pockets;
 
 export const defaultState: DefaultState = [
@@ -20,8 +14,8 @@ export const defaultState: DefaultState = [
   },
   {
     currency: CurrencyMap.pound,
-    sum: '10.22',
-    placedSum: '0'
+    sum: '102.22',
+    placedSum: '3'
   },
   {
     currency: CurrencyMap.dollar,
@@ -37,19 +31,12 @@ export const initializedState = {};
 const reducer = handleActions<DefaultState, Payload>({
   [actions.setPocket.toString()]: (state, { payload }) =>
     assocPath([], payload.payload, state),
-  [actions.setPlacedSum.toString()]: (state, { payload }) => {
-    const { currencies, currencyRates, pocketDirection, placedSum } = payload;
-    const currency1 = currencies[pocketDirection]
-    let pocket1 = filterPocketByCurrency(state, currency1)
-    pocket1 = assocPath(['placedSum'], parseNum(placedSum), pocket1)
-
-    const currency2 = getCurrencyByDirection(payload.currencies, getOppositeDirection(pocketDirection))
-    let pocket2 = filterPocketByCurrency(state, currency2)
-    const rate = pocketDirection === CurrencyExchangeTypes.out ? currencyRates.rate : currencyRates.reverse
-    pocket2 = assocPath(['placedSum'], calcRate(rate, placedSum), pocket2)
-    const restPockets = state.filter(p => ![currency1, currency2].includes(p.currency))
-
-    return assocPath([], [...restPockets, pocket1, pocket2], state)
+  [actions.setPlacedAmount.toString()]: (state, { payload }) => {
+    const changedCurrencies = payload.map((pocket: Pocket) => pocket.currency);
+    const restPockets = state.filter(pocket => 
+       !includes(pocket.currency, changedCurrencies))
+    
+    return assocPath([], [...restPockets, ...payload], state)
   },
 },
   defaultState,

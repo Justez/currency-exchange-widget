@@ -21,16 +21,16 @@ function* getCurrencyRatesFlow() {
     yield put({ type: actions.getCurrencyRatesRequest.toString() })
     const selectedCurrencies = yield select(state => getSelectedCurrencies(state))
 
-    const { response } = yield race({ response: call(getCurrencyRates, selectedCurrencies, checksum), cancel: take(actions.registerChecksum.toString()) })
-    if (response) { // TODO parse data forward
-      yield put({ type: actions.setCurrencyRates.toString(), payload: response.data })
+    const { response, error } = yield race({ response: call(getCurrencyRates, selectedCurrencies, checksum), cancel: take(actions.registerChecksum.toString()) })
+    if (!error) {
+      yield put({ type: actions.setCurrencyRates.toString(), payload: response })
       yield put({ type: actions.getCurrencyRatesSuccess.toString() })
     } else {
       yield put({ type: actions.getCurrencyRatesFailure.toString() })
       yield put({ type: actions.getCurrencyRates.toString() })
     }
     
-    yield delay(50000)
+    yield delay(10000)
     yield put({ type: actions.getCurrencyRates.toString() })
   } catch (error) {
   }
