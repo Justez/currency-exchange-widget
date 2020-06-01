@@ -1,16 +1,15 @@
 import React, { ChangeEvent } from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
-import { Input, InputAdornment, Grid } from '@material-ui/core'
+import { Input, InputAdornment } from '@material-ui/core'
 import { connect } from 'react-redux';
-import { find, propEq } from 'ramda'
+import { makeStyles } from '@material-ui/core/styles';
 
 import { actions as pocketActions } from 'store/modules/pockets';
-import { Pockets, Currencies, CurrencyExchangeTypes, CurrencyRates } from 'types'
-import { getPockets } from 'store/modules/pockets/selectors';
+import { Pockets, Currencies, CurrencyExchangeTypes } from 'types'
+import { getPockets, filterPocketByCurrency } from 'store/modules/pockets/selectors';
 import { State } from 'store';
 import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
 import mapIcons from 'helpers/mapIcons'
-import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
 import parseNum from 'helpers/parseNum';
 
 interface DispatchProps {
@@ -22,7 +21,6 @@ interface DispatchProps {
 interface StateProps {
     currencies: Currencies,
     pockets: Pockets,
-    currencyRates: CurrencyRates
 }
 
 interface OwnProps {
@@ -31,38 +29,49 @@ interface OwnProps {
 
 type Props = OwnProps & StateProps & DispatchProps
 
-const AmountInputField = ({ actions, currencies, pockets, pocketDirection, currencyRates }: Props) => {
+const useStyles = makeStyles({
+    root: {
+        fontSize: '1.5rem',
+        width: '30vw',
+        maxWidth: '32vw'
+    },
+    input: {
+        textAlign: 'end'
 
-    const currentPocket = find(propEq('currency', currencies[pocketDirection]), pockets)
+    }
+});
+
+const AmountInputField = ({ actions, currencies, pockets, pocketDirection }: Props) => {
+    const classes = useStyles();
+    const currentPocket = filterPocketByCurrency(pockets, currencies[pocketDirection])
 
     const handleInputChange = (event: ChangeEvent<{ value: string; }>) => {
         const placedSum = parseNum(event.target.value)
-        // todo make calcs in saga
-        actions.pockets.setPlacedSum({ placedSum, pocketDirection, currencies, currencyRates })
+        if (placedSum < currentPocket.sum) {
+            actions.pockets.placeSum({ placedSum, pocketDirection })
+        }
     }
 
     return (
-        <Grid container direction="column">
-            <Input
-                id="standard-adornment-password"
-                type='number'
-                value={currentPocket.placedSum}
-                onChange={handleInputChange}
-                inputProps={{ min: 0, max: currentPocket.sum, maxLength: 6 }}
-                endAdornment={
-                    <InputAdornment position="end">
-                        {mapIcons(currencies[pocketDirection])}
-                    </InputAdornment>
-                }
-            />
-        </Grid>
+        <Input
+            id="standard-adornment-password"
+            type='number'
+            value={currentPocket.placedSum}
+            className={classes.root}
+            onChange={handleInputChange}
+            inputProps={{ min: 0, max: +currentPocket.sum, className: classes.input, maxLength: 8 }}
+            endAdornment={
+                <InputAdornment position="end">
+                    {mapIcons(currencies[pocketDirection])}
+                </InputAdornment>
+            }
+        />
     )
 }
 
 const mapStateToProps = (state: State): StateProps => ({
     currencies: getSelectedCurrencies(state),
     pockets: getPockets(state),
-    currencyRates: getCurrencyRates(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

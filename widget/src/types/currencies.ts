@@ -4,8 +4,8 @@ export enum CurrencyExchangeTypes {
 }
 
 export interface Currencies {
-    [CurrencyExchangeTypes.in]: string,
-    [CurrencyExchangeTypes.out]: string
+    [CurrencyExchangeTypes.in]: CurrencyMap,
+    [CurrencyExchangeTypes.out]: CurrencyMap
 }
 
 export enum CurrencyMap {

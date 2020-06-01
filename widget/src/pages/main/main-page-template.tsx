@@ -19,8 +19,6 @@ interface DispatchProps {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-  },
   first: {
     height: '50vh',
     backgroundColor: theme.palette.secondary.light
@@ -44,8 +42,8 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
   }
 
   return (
-    <Grid container direction="column" className={classes.root}>
-      <Grid item className={classes.first}>
+    <Grid container direction="column">
+      <Grid item container direction="column" justify="center" className={classes.first}>
         <OutCurrencyTemplate />
       </Grid>
       <Grid item container direction="column" className={classes.second}>

@@ -51,13 +51,6 @@ export default createMuiTheme({
         backgroundColor: common.white,
       },
     },
-    MuiInput: {
-      root: {
-        fontSize: '1.5rem',
-        minWidth: '15vw',
-        maxWidth: '32vw',
-      }
-    },
     MuiInputAdornment: {
       root: {
         display: 'block',
@@ -65,10 +58,5 @@ export default createMuiTheme({
         height: 'unset'
       }
     },
-    MuiTypography: {
-      caption: {
-        color: red['A400']
-      }
-    }
   },
 });
