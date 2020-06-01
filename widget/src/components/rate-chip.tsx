@@ -24,10 +24,6 @@ const useStyles = makeStyles((theme) => ({
     label: {
         padding: theme.spacing(0, 2)
     },
-    rate: {
-        marginTop: theme.spacing(-3),
-        backgroundColor: theme.palette.common.white,
-    }
 }));
 
 const RateChip = ({ currencies, currencyRates }: Props) => {
@@ -39,7 +35,7 @@ const RateChip = ({ currencies, currencyRates }: Props) => {
     )
 
     return (
-        <Chip label={label} avatar={<TrendingUp />} variant="outlined" className={classes.rate} />
+        <Chip label={label} avatar={<TrendingUp />} variant="outlined" />
     )
 }
 

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid  } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { Dispatch, bindActionCreators } from 'redux';
-import InputCurrencyTemplate from 'functional-components/input-currency-template'
+import OutCurrencyTemplate from '../../functional-components/out-currency-template'
+import InCurrencyTemplate from '../../functional-components/in-currency-template'
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import RateChip from 'components/rate-chip';
 import FlipChip from 'components/flip-chip';
@@ -33,18 +34,23 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
   useEffect(() => {
     actions.currencyRates.startPollingCurrencyRates()
   })
-  
+
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item className={classes.first}>
-        <InputCurrencyTemplate />
+        <OutCurrencyTemplate />
       </Grid>
-      <Grid item container className={classes.second}>
-        <Grid item container justify="center" xs={4}>
-          <FlipChip />
+      <Grid item container direction="column" className={classes.second}>
+        <Grid item container direction="row" justify="flex-start">
+          <Grid item container justify="center" xs={3}>
+            <FlipChip />
+          </Grid>
+          <Grid item container justify="center" xs={6}>
+            <RateChip />
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <RateChip />
+        <Grid item>
+          <InCurrencyTemplate />
         </Grid>
       </Grid>
     </Grid>
