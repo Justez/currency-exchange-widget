@@ -22,53 +22,32 @@ function* getCurrencyRatesFlow() {
     yield put({ type: actions.getCurrencyRatesRequest.toString() });
     const selectedCurrencies = yield select(state => getSelectedCurrencies(state));
 
-    const { response, error } = yield race({ response: call(getCurrencyRates, selectedCurrencies), cancel: take(actions.registerChecksum.toString()) });
+    const { response, cancel } = yield race({ response: call(getCurrencyRates), cancel: take(actions.getCurrencyRates.toString()) });
 
-      if (!error || response.rates) {
+      if (!cancel || response.rates) {
       const currency = (selectedCurrencies[CurrencyExchangeTypes.in]).toUpperCase();
       const rate = parseNum(response.rates[currency]);
       const reverse = countReverseCurrency(rate);
 
-      yield put({
-        type: actions.setCurrencyRates.toString(), payload: { rate, reverse },
-      })
+      yield put({ type: actions.setCurrencyRates.toString(), payload: { rate, reverse } })
       yield put({ type: actions.getCurrencyRatesSuccess.toString() });
     } else {
       yield put({ type: actions.getCurrencyRatesFailure.toString() });
-      yield put({ type: actions.getCurrencyRates.toString() });
+      yield put({ type: actions.setCurrencyRates.toString(), payload: { rate: '', reverse: '' }})
     }
 
-    yield delay(10000);
+    yield delay(100000);
     yield put({ type: actions.getCurrencyRates.toString() });
   } catch (error) {
     yield put({ type: actions.getCurrencyRatesFailure.toString() });
-    yield delay(100);
+    yield put({ type: actions.setCurrencyRates.toString(), payload: { rate: '', reverse: '' }})
+      // yield delay(1000);
     // yield put({ type: actions.getCurrencyRates.toString() });
   }
 }
 
-function* pollRates() {
-  try {
-    yield put({ type: actions.getCurrencyRates.toString() });
-  } catch (error) {
-  }
-}
-
-function* registerCheckSum() {
-  try {
-    yield put({ type: actions.registerChecksum.toString() });
-  } catch (error) {
-  }
-}
-
-function* watchCurrencyPairChanged() {
-  yield takeLatest([currencyActions.setSelectedCurrency], registerCheckSum);
-}
-
 export default function* saga() {
   yield all([
-    watchCurrencyPairChanged(),
-    takeLatest(actions.registerChecksum, pollRates),
-    takeLatest(actions.getCurrencyRates, getCurrencyRatesFlow),
+    takeLatest([currencyActions.setSelectedCurrency, actions.getCurrencyRates], getCurrencyRatesFlow),
   ]);
 }
