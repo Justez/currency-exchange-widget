@@ -1,57 +1,75 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Chip, Typography } from '@material-ui/core'
-import { Currencies, CurrencyRates } from 'types'
+import { Chip, Typography } from '@material-ui/core';
+import { Currencies, CurrencyRates } from 'types';
 import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
 import { State } from 'store';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import TrendingUp from 'assets/icons/trend-up';
 import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
-import mapIcons from 'helpers/mapIcons'
+import mapIcons from 'helpers/mapIcons';
+import { getLoadingStatus } from 'store/modules/loading/selectors';
+import { actions as currencyRatesActions } from 'store/modules/currency-rates';
+import Loader from 'components/loader';
 
 interface StateProps {
-    currencies: Currencies,
-    currencyRates: CurrencyRates
+    currencies: Currencies;
+    currencyRates: CurrencyRates;
+    loading: boolean;
 }
 
-interface OwnProps {
-}
+type Props = StateProps;
 
-type Props = StateProps & OwnProps
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        minWidth: '33vw'
+    },
     label: {
         padding: theme.spacing(0, 2)
     },
 }));
 
-const RateChip = ({ currencies, currencyRates }: Props) => {
+const RateChip = ({ currencies, currencyRates, loading }: Props) => {
     const classes = useStyles();
-    
-    const [reverse, setReverse] = useState(false)
+    const [reverse, setReverse] = useState(false);
 
-    const label = (
+    const toggleReverseRates = () => setReverse(!reverse);
+
+    const normalRate = (
         <Typography className={classes.label}>
             1{mapIcons(currencies.out)} = {currencyRates.rate}{mapIcons(currencies.in)}
         </Typography>
-    )
+    );
 
-    const labelReverse = (
+    const rateReverse = (
         <Typography className={classes.label}>
             {currencyRates.reverse}{mapIcons(currencies.out)} = 1{mapIcons(currencies.in)}
         </Typography>
-    )
+    );
 
-    const toggleReverseRates = () => setReverse(!reverse)
+    const label = loading
+        ? <Loader size={15} thickness={5} />
+        : (reverse ? rateReverse : normalRate)
 
     return (
-        <Chip label={reverse ? labelReverse : label} avatar={<TrendingUp />} variant="outlined" onClick={toggleReverseRates} />
-    )
+        <Chip
+            label={label}
+            avatar={<TrendingUp />}
+            variant="outlined"
+            onClick={toggleReverseRates}
+            className={classes.root}
+        />
+    );
 }
+
+const loadingSelector = getLoadingStatus([
+    currencyRatesActions.getCurrencyRatesRequest.toString(),
+]);
 
 const mapStateToProps = (state: State): StateProps => ({
     currencies: getSelectedCurrencies(state),
     currencyRates: getCurrencyRates(state),
+    loading: loadingSelector(state),
 });
 
 export default connect(mapStateToProps)(RateChip);
