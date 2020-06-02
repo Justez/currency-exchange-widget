@@ -4,7 +4,8 @@
   "description": "Currency exchange react.js widget",
   "main": "index.html",
   "scripts": {
-    "run-widget": "concurrently \"cd widget && BROWSER=none yarn start\"  \"wait-on http://localhost:3000 && http-server\""
+    "run-widget": "concurrently \"cd widget && BROWSER=none yarn start\"  \"wait-on http://localhost:3000 && http-server\"",
+    "install:client": "cd widget && yarn"
   },
   "author": "Justina Zlabyte",
   "license": "ISC",
