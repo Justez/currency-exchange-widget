@@ -9,8 +9,8 @@ import AmountInputField from 'components/amount-input-field';
 
 const OutCurrencyTemplate = () => {
     return (
-        <Box p={3}>
-            <Grid item container direction="row" justify="space-between">
+        <Box p={3} pb={7}>
+            <Grid container direction="row" justify="space-between">
                 <Grid item>
                     <CurrencySelect indicator={CurrencyExchangeTypes.out} />
                 </Grid>

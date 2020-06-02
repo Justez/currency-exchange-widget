@@ -15,21 +15,24 @@ import Loader from 'components/loader';
 interface StateProps {
     currencies: Currencies;
     currencyRates: CurrencyRates;
-    loading: boolean;
+    isLoadingRates: boolean;
 }
 
 type Props = StateProps;
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        minWidth: '33vw'
+        minWidth: '33vw',
     },
     label: {
         padding: theme.spacing(0, 2)
     },
+    error: {
+        color: theme.palette.error.dark,
+    },
 }));
 
-const RateChip = ({ currencies, currencyRates, loading }: Props) => {
+const RateChip = ({ currencies, currencyRates, isLoadingRates }: Props) => {
     const classes = useStyles();
     const [reverse, setReverse] = useState(false);
 
@@ -47,13 +50,15 @@ const RateChip = ({ currencies, currencyRates, loading }: Props) => {
         </Typography>
     );
 
-    const label = loading
+    const label = isLoadingRates
         ? <Loader size={15} thickness={5} />
         : (reverse ? rateReverse : normalRate)
 
+    const error = <Typography className={classes.error} variant="caption">unavailable</Typography>
+
     return (
         <Chip
-            label={label}
+            label={currencyRates.rate ? label : error}
             avatar={<TrendingUp />}
             variant="outlined"
             onClick={toggleReverseRates}
@@ -62,14 +67,14 @@ const RateChip = ({ currencies, currencyRates, loading }: Props) => {
     );
 }
 
-const loadingSelector = getLoadingStatus([
+const isLoadingRatesSelector = getLoadingStatus([
     currencyRatesActions.getCurrencyRatesRequest.toString(),
 ]);
 
 const mapStateToProps = (state: State): StateProps => ({
     currencies: getSelectedCurrencies(state),
     currencyRates: getCurrencyRates(state),
-    loading: loadingSelector(state),
+    isLoadingRates: isLoadingRatesSelector(state),
 });
 
 export default connect(mapStateToProps)(RateChip);

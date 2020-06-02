@@ -33,9 +33,7 @@ const reducer = handleActions<DefaultState, Payload>({
     assocPath([], payload.payload, state),
   [actions.setPlacedAmount.toString()]: (state, { payload }) => {
     const changedCurrencies = payload.map((pocket: Pocket) => pocket.currency);
-    const restPockets = state.filter(pocket => 
-       !includes(pocket.currency, changedCurrencies));
-    
+    const restPockets = state.filter(pocket => !includes(pocket.currency, changedCurrencies));
     return assocPath([], [...restPockets, ...payload], state);
   },
 },

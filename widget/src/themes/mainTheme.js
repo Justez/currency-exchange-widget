@@ -1,17 +1,17 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey, blue, common } from '@material-ui/core/colors';
+import { blueGrey, blue, common, pink } from '@material-ui/core/colors';
 
 export default createMuiTheme({
   palette: {
     primary: {
+      light: common.white,
       main: blue[700],
-      dark: blue[800],
-      light: blueGrey['A200'],
+      dark: blueGrey[50]
     },
     secondary: {
-      light: blueGrey[50],
-      main: blue[900],
-      dark: blueGrey[100]
+      main: pink['A200'],
+      dark: pink[900],
+      light: pink[50],
     },
   },
   overrides: {

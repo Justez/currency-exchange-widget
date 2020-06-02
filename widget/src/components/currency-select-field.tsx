@@ -22,8 +22,8 @@ interface DispatchProps {
 interface StateProps {
     pockets: Pockets;
     currencies: Currencies;
-    loadingCurrencyRates: boolean;
-    proccessingExchange: boolean;
+    isLoadingRates: boolean;
+    isSubmittingExchange: boolean;
 }
 
 interface OwnProps {
@@ -32,7 +32,7 @@ interface OwnProps {
 
 type Props = DispatchProps & StateProps & OwnProps;
 
-const CurrencySelect = ({ actions, pockets, currencies, indicator, loadingCurrencyRates, proccessingExchange }: Props) => {
+const CurrencySelect = ({ actions, pockets, currencies, indicator, isLoadingRates, isSubmittingExchange }: Props) => {
     const selectedCurrency = currencies[indicator];
     const setSelectedCurrency = (event: ChangeEvent<{ value: unknown; }>) =>
         actions.currencies.setSelectedCurrency({ [indicator]: event.target.value });
@@ -47,7 +47,7 @@ const CurrencySelect = ({ actions, pockets, currencies, indicator, loadingCurren
             <Grid item>
                 <Select
                     autoWidth
-                    disabled={loadingCurrencyRates}
+                    disabled={isLoadingRates}
                     onChange={setSelectedCurrency}
                     id="choose-out-currency"
                     value={selectedCurrency}
@@ -62,10 +62,10 @@ const CurrencySelect = ({ actions, pockets, currencies, indicator, loadingCurren
                 </Select>
             </Grid>
             <Grid item>
-                {proccessingExchange ? (
+                {isSubmittingExchange ? (
                     <Loader size={15} thickness={5} />
                 ) : (
-                    <Typography>
+                    <Typography variant="body2">
                         Balance{' '}{getPocketFromSelected}{mapIcons(selectedCurrency)}
                     </Typography>
                 )}
@@ -78,7 +78,7 @@ const loadingRatesSelector = getLoadingStatus([
     currencyRatesActions.getCurrencyRatesRequest.toString(),
 ]);
 
-const proccessingExchangeSelector = getLoadingStatus([
+const submittingExchangeSelector = getLoadingStatus([
     pocketsActions.placeExchangeRequest.toString(),
 ]);
 
@@ -91,8 +91,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 const mapStateToProps = (state: State): StateProps => ({
     pockets: getPockets(state),
     currencies: getSelectedCurrencies(state),
-    loadingCurrencyRates: loadingRatesSelector(state),
-    proccessingExchange: proccessingExchangeSelector(state),
+    isLoadingRates: loadingRatesSelector(state),
+    isSubmittingExchange: submittingExchangeSelector(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelect);

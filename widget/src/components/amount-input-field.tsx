@@ -23,7 +23,7 @@ interface DispatchProps {
 interface StateProps {
     currencies: Currencies;
     pockets: Pockets;
-    loading: boolean;
+    isLoadingRates: boolean;
 }
 
 interface OwnProps {
@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     },
 });
 
-const AmountInputField = ({ actions, currencies, pockets, pocketDirection, loading }: Props) => {
+const AmountInputField = ({ actions, currencies, pockets, pocketDirection, isLoadingRates }: Props) => {
     const classes = useStyles();
     const currentPocket = filterPocketByCurrency(pockets, currencies[pocketDirection]);
 
@@ -61,7 +61,7 @@ const AmountInputField = ({ actions, currencies, pockets, pocketDirection, loadi
             value={currentPocket.placedSum}
             className={classes.root}
             onChange={handleInputChange}
-            disabled={loading}
+            disabled={isLoadingRates}
             inputProps={{ min: 0, max: +currentPocket.sum, className: classes.input, maxLength: 8 }}
             endAdornment={
                 <InputAdornment position="end">
@@ -72,14 +72,14 @@ const AmountInputField = ({ actions, currencies, pockets, pocketDirection, loadi
     );
 }
 
-const loadingSelector = getLoadingStatus([
+const loadingRatesSelector = getLoadingStatus([
     currencyRatesActions.getCurrencyRatesRequest.toString(),
 ]);
 
 const mapStateToProps = (state: State): StateProps => ({
     currencies: getSelectedCurrencies(state),
     pockets: getPockets(state),
-    loading: loadingSelector(state),
+    isLoadingRates: loadingRatesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
