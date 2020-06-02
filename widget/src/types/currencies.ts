@@ -1,15 +1,15 @@
 export enum CurrencyExchangeTypes {
     in = 'in',
-    out = 'out'
+    out = 'out',
 }
 
 export interface Currencies {
-    [CurrencyExchangeTypes.in]: CurrencyMap,
-    [CurrencyExchangeTypes.out]: CurrencyMap
+    [CurrencyExchangeTypes.in]: CurrencyMap;
+    [CurrencyExchangeTypes.out]: CurrencyMap;
 }
 
 export enum CurrencyMap {
     euro = 'eur',
     dollar = 'usd',
-    pound = 'gbp'
+    pound = 'gbp',
 }
