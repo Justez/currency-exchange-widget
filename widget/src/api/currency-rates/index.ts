@@ -6,7 +6,7 @@ const URL = 'https://openexchangerates.org/api/latest.json';
 
 export const getCurrencyRates = () => axios.get(URL, {
     params: {
-        app_id: '2b3e9170d55c46fead589f4fdeac1fb8',
+        // app_id: '2b3e9170d55c46fead589f4fdeac1fb8',
     }
 })
     .then((res: CurrencyRateResponse) => res.data)

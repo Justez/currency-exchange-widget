@@ -25,9 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         minWidth: '33vw',
     },
     label: {
-        padding: theme.spacing(0, 2)
+        padding: theme.spacing(0, 2),
     },
     error: {
+        padding: theme.spacing(0, 3),
         color: theme.palette.error.dark,
     },
 }));

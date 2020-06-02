@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { Input, InputAdornment } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { State } from 'store';
 import { actions as pocketActions } from 'store/modules/pockets';
@@ -32,16 +32,17 @@ interface OwnProps {
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         fontSize: '1.5rem',
         width: '30vw',
-        maxWidth: '32vw',
     },
     input: {
         textAlign: 'end',
+        marginRight: theme.spacing(-2.5),
+        marginBottom: theme.spacing(-0.5),
     },
-});
+}));
 
 const AmountInputField = ({ actions, currencies, pockets, pocketDirection, isLoadingRates }: Props) => {
     const classes = useStyles();
@@ -62,7 +63,7 @@ const AmountInputField = ({ actions, currencies, pockets, pocketDirection, isLoa
             className={classes.root}
             onChange={handleInputChange}
             disabled={isLoadingRates}
-            inputProps={{ min: 0, max: +currentPocket.sum, className: classes.input, maxLength: 8 }}
+            inputProps={{ min: 0, max: +currentPocket.sum, className: classes.input, maxLength: 7 }}
             endAdornment={
                 <InputAdornment position="end">
                     {mapIcons(currencies[pocketDirection])}

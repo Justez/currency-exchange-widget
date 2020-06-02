@@ -15,7 +15,7 @@ export const defaultState: DefaultState = [
   {
     currency: CurrencyMap.pound,
     sum: '102.22',
-    placedSum: 3,
+    placedSum: 12,
   },
   {
     currency: CurrencyMap.dollar,
