@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey, blue, common, red } from '@material-ui/core/colors'
+import { blueGrey, blue, common } from '@material-ui/core/colors';
 
 export default createMuiTheme({
   palette: {
@@ -21,15 +21,11 @@ export default createMuiTheme({
           overflowX: 'hidden',
           overflowY: 'auto',
         },
-        img: {
-          height: '0.7rem',
-          paddingLeft: '0.2rem'
-        },
       },
     },
     MuiSelect: {
       select: {
-        paddingRight: 0
+        paddingRight: 0,
       },
     },
     MuiChip: {
@@ -55,8 +51,8 @@ export default createMuiTheme({
       root: {
         display: 'block',
         maxHeight: 'unset',
-        height: 'unset'
-      }
+        height: 'unset',
+      },
     },
   },
 });

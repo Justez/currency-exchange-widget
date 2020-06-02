@@ -18,9 +18,8 @@ export const initializedState = {};
 const reducer = handleActions<DefaultState, Payload>({
   [actions.setSelectedCurrency.toString()]: (state, { payload }) =>
     assocPath([Object.keys(payload)[0]], Object.values(payload)[0], state),
-  [actions.flipSelectedCurrencies.toString()]: ((state) => 
-    assocPath([], { in: state.out, out: state.in }, state)
-  ),
+  [actions.flipSelectedCurrencies.toString()]: ((state) =>
+    assocPath([], { in: state.out, out: state.in }, state)),
 },
   defaultState,
 );

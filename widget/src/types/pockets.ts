@@ -1,9 +1,9 @@
-import { CurrencyMap } from './'
+import { CurrencyMap } from './';
 
 export type Pocket = {
-    currency: CurrencyMap,
+    currency: CurrencyMap;
     sum: string;
-    placedSum: string;
+    placedSum: number;
 }
 
 export type Pockets = Array<Pocket>

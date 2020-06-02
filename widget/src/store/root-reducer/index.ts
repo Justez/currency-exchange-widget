@@ -1,1 +1,1 @@
-export { default } from './root-reducer'
+export { default } from './root-reducer';

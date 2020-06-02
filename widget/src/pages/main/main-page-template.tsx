@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import { Dispatch, bindActionCreators } from 'redux';
-import OutCurrencyTemplate from '../../functional-components/out-currency-template'
-import InCurrencyTemplate from '../../functional-components/in-currency-template'
+import OutCurrencyTemplate from '../../functional-components/out-currency-template';
+import InCurrencyTemplate from '../../functional-components/in-currency-template';
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import { actions as currenciesActions } from 'store/modules/currencies';
 
@@ -18,10 +18,10 @@ interface DispatchProps {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   first: {
     height: '50vh',
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.secondary.light,
   },
   second: {
     height: '50vh',
@@ -33,13 +33,13 @@ const MainPage = ({ actions }: DispatchProps): JSX.Element => {
   const classes = useStyles();
 
   useEffect(() => {
-    actions.currencyRates.registerChecksum()
-  })
+    actions.currencyRates.registerChecksum();
+  });
 
   const handleFlip = () => {
-    actions.currencyRates.flipRates()
-    actions.currencies.flipSelectedCurrencies()
-  }
+    actions.currencyRates.flipRates();
+    actions.currencies.flipSelectedCurrencies();
+  };
 
   return (
     <Grid container direction="column">

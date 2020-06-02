@@ -6,11 +6,11 @@ import { CurrencyRates } from 'types';
 
 import { actions } from '.';
 
-export type DefaultState = CurrencyRates
+export type DefaultState = CurrencyRates;
 
 export const defaultState: DefaultState = {
-  rate: '1',
-  reverse: '1',
+  rate: '',
+  reverse: '',
   checksum: '',
 };
 
@@ -24,8 +24,7 @@ const reducer = handleActions<DefaultState, Payload>({
   [actions.flipRates.toString()]: ((state) =>
     assocPath([], { rate: state.reverse, reverse: state.rate }, state)),
   [actions.registerChecksum.toString()]: ((state) =>
-    assocPath(['checksum'], uuid(), state)
-  )
+    assocPath(['checksum'], uuid(), state)),
 },
   defaultState,
 );

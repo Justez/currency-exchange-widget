@@ -7,16 +7,15 @@ import {
 } from 'redux-saga/effects';
 import { find, propEq, pathOr, assocPath } from 'ramda';
 
-import { CurrencyExchangeTypes } from 'types';
-import { actions as ratesActions } from 'store/modules/currency-rates';
 import { actions } from 'store/modules/pockets';
+import { actions as ratesActions } from 'store/modules/currency-rates';
 import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
 import { getPockets, getPocketByCurrency } from 'store/modules/pockets/selectors';
 import { getSelectedCurrencies, getOppositeDirection, getCurrencyByDirection } from 'store/modules/currencies/selectors';
-import calcAmountByRate from 'helpers/calcAmountByRate';
-
 import parseNum from 'helpers/parseNum';
 import { add, deduct } from 'helpers/applyOperation';
+import calcAmountByRate from 'helpers/calcAmountByRate';
+import { CurrencyExchangeTypes } from 'types';
 
 function* calcWithdrawAmount() {
   try {
@@ -27,7 +26,6 @@ function* calcWithdrawAmount() {
     } = yield select(getSelectedCurrencies);
     const donorPocket = find(propEq('currency', currencyOut), pockets);
     const recipientPocket = find(propEq('currency', currencyIn), pockets);
-
     const { rate } = yield select(getCurrencyRates);
     const newSum = calcAmountByRate(rate, pathOr(0, ['placedSum'], donorPocket));
 
@@ -49,9 +47,9 @@ function* placeSumFlow() {
     const rate = pocketDirection === CurrencyExchangeTypes.out ? rates.rate : rates.reverse;
 
     let pocket1 = yield select(state => getPocketByCurrency(state, currency1));
-    pocket1 = assocPath(['placedSum'], parseNum(placedSum), pocket1);
-
     let pocket2 = yield select(state => getPocketByCurrency(state, currency2));
+
+    pocket1 = assocPath(['placedSum'], parseNum(placedSum), pocket1);
     pocket2 = assocPath(['placedSum'], calcAmountByRate(rate, placedSum), pocket2);
 
     yield put({ type: actions.setPlacedAmount.toString(), payload: [pocket1, pocket2] });
@@ -61,6 +59,7 @@ function* placeSumFlow() {
 
 function* placeExchangeFlow() {
   try {
+    yield put({ type: actions.placeExchangeRequest.toString() });
     const currencies = yield select(getSelectedCurrencies);
     const currency1 = currencies[CurrencyExchangeTypes.in];
     const currency2 = currencies[CurrencyExchangeTypes.out];
@@ -72,7 +71,9 @@ function* placeExchangeFlow() {
     pocket2 = { ...pocket2, sum: deduct(pocket2.sum, pocket2.placedSum), placedSum: '0' };
     
     yield put({ type: actions.setPlacedAmount.toString(), payload: [pocket1, pocket2] });
+    yield put({ type: actions.placeExchangeSuccess.toString() });
   } catch (error) {
+    yield put({ type: actions.placeExchangeFailure.toString() });
   }
 }
 

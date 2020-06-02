@@ -1,4 +1,3 @@
-//@ts-ignore
 import { createActions } from 'redux-actions';
 
 export const NAMESPACE = 'currencies';

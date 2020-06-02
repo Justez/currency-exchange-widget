@@ -1,1 +1,1 @@
-export { default } from './main-page-template'
+export { default } from './main-page-template';

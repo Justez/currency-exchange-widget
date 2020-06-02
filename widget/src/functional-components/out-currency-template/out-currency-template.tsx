@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core';
 
 
-import CurrencySelect from 'components/currency-select-field'
-import { CurrencyExchangeTypes } from 'types'
+import CurrencySelect from 'components/currency-select-field';
+import { CurrencyExchangeTypes } from 'types';
 import AmountInputField from 'components/amount-input-field';
 
 
@@ -19,7 +19,7 @@ const OutCurrencyTemplate = () => {
                 </Grid>
             </Grid>
         </Box>
-    )
+    );
 }
 
-export default OutCurrencyTemplate
+export default OutCurrencyTemplate;

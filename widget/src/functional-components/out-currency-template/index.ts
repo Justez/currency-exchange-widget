@@ -1,1 +1,1 @@
-export { default } from './out-currency-template'
+export { default } from './out-currency-template';
