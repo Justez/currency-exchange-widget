@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import { actions as currencyActions } from 'store/modules/currencies';
 import { actions as pocketsActions } from 'store/modules/pockets';
@@ -27,15 +28,23 @@ interface StateProps {
 }
 
 interface OwnProps {
-    indicator: CurrencyExchangeTypes;
+    pocketDirection: CurrencyExchangeTypes;
 }
 
 type Props = DispatchProps & StateProps & OwnProps;
 
-const CurrencySelect = ({ actions, pockets, currencies, indicator, isLoadingRates, isSubmittingExchange }: Props) => {
-    const selectedCurrency = currencies[indicator];
+const useStyles = makeStyles((theme: Theme) => ({
+    balance: {
+        color: theme.palette.secondary.main,
+    },
+}));
+
+const CurrencySelect = ({ actions, pockets, currencies, pocketDirection, isLoadingRates, isSubmittingExchange }: Props) => {
+    const classes = useStyles();
+
+    const selectedCurrency = currencies[pocketDirection];
     const setSelectedCurrency = (event: ChangeEvent<{ value: unknown; }>) =>
-        actions.currencies.setSelectedCurrency({ [indicator]: event.target.value });
+        actions.currencies.setSelectedCurrency({ [pocketDirection]: event.target.value });
 
     const getPocketFromSelected = pipe(
         find(propEq('currency', selectedCurrency)),
@@ -65,7 +74,7 @@ const CurrencySelect = ({ actions, pockets, currencies, indicator, isLoadingRate
                 {isSubmittingExchange ? (
                     <Loader size={15} thickness={5} />
                 ) : (
-                    <Typography variant="body2">
+                    <Typography variant="body2" className={pocketDirection === CurrencyExchangeTypes.out ? classes.balance : ''}>
                         Balance{' '}{getPocketFromSelected}{mapIcons(selectedCurrency)}
                     </Typography>
                 )}

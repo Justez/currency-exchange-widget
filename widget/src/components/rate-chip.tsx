@@ -23,13 +23,10 @@ type Props = StateProps;
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minWidth: '33vw',
+        color: theme.palette.primary.main,
     },
     label: {
         padding: theme.spacing(0, 2),
-    },
-    error: {
-        padding: theme.spacing(0, 3),
-        color: theme.palette.error.dark,
     },
 }));
 
@@ -55,7 +52,7 @@ const RateChip = ({ currencies, currencyRates, isLoadingRates }: Props) => {
         ? <Loader size={15} thickness={5} />
         : (reverse ? rateReverse : normalRate)
 
-    const error = <Typography className={classes.error} variant="caption">unavailable</Typography>
+    const error = <Typography className={classes.label} variant="caption">unavailable</Typography>
 
     return (
         <Chip

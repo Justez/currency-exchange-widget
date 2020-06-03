@@ -21,6 +21,13 @@ export default createMuiTheme({
           overflowX: 'hidden',
           overflowY: 'auto',
         },
+        input: {
+          '&[type=number]': {
+            textAlign: 'end',
+            marginRight: '-8px',
+            border: 'none !important'
+          },
+        },
       },
     },
     MuiSelect: {
@@ -45,13 +52,6 @@ export default createMuiTheme({
     MuiButton: {
       outlined: {
         backgroundColor: common.white,
-      },
-    },
-    MuiInputAdornment: {
-      root: {
-        display: 'block',
-        maxHeight: 'unset',
-        height: 'unset',
       },
     },
   },
