@@ -13,11 +13,11 @@ import { getCurrencyRates } from 'api/currency-rates'
 import { actions as currencyActions } from 'store/modules/currencies';
 import { getSelectedCurrencies } from 'store/modules/currencies/selectors'
 import { actions } from 'store/modules/currency-rates';
-import countReverseCurrency from 'helpers/countReverseCurrency';
+import countReverseCurrency from 'helpers/countReverseCurrencyRate';
 import parseNum from 'helpers/parseNum';
 import { CurrencyExchangeTypes } from 'types';
 
-function* getCurrencyRatesFlow() {
+export function* getCurrencyRatesFlow() {
   try {
     yield put({ type: actions.getCurrencyRatesRequest.toString() });
     const selectedCurrencies = yield select(state => getSelectedCurrencies(state));
