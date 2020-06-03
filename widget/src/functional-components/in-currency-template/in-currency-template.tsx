@@ -11,7 +11,7 @@ const InCurrencyTemplate = () => (
         <Grid container direction="column" spacing={6} justify="space-between">
             <Grid item container direction="row" justify="space-between">
                 <Grid item>
-                    <CurrencySelect indicator={CurrencyExchangeTypes.in} />
+                    <CurrencySelect pocketDirection={CurrencyExchangeTypes.in} />
                 </Grid>
                 <Grid item>
                     <AmountInputField pocketDirection={CurrencyExchangeTypes.in} />

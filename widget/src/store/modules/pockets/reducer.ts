@@ -9,17 +9,17 @@ export type DefaultState = Pockets;
 export const defaultState: DefaultState = [
   {
     currency: CurrencyMap.euro,
-    sum: '868.22',
+    sum: 868.22,
     placedSum: 4,
   },
   {
     currency: CurrencyMap.pound,
-    sum: '102.22',
+    sum: 102.22,
     placedSum: 12,
   },
   {
     currency: CurrencyMap.dollar,
-    sum: '7699.22',
+    sum: 7699.22,
     placedSum: 0,
   }
 ]
@@ -29,8 +29,6 @@ type Payload = any;
 export const initializedState = {};
 
 const reducer = handleActions<DefaultState, Payload>({
-  [actions.setPocket.toString()]: (state, { payload }) =>
-    assocPath([], payload.payload, state),
   [actions.setPlacedAmount.toString()]: (state, { payload }) => {
     const changedCurrencies = payload.map((pocket: Pocket) => pocket.currency);
     const restPockets = state.filter(pocket => !includes(pocket.currency, changedCurrencies));

@@ -12,7 +12,7 @@ const OutCurrencyTemplate = () => {
         <Box p={3} pb={7}>
             <Grid container direction="row" justify="space-between">
                 <Grid item>
-                    <CurrencySelect indicator={CurrencyExchangeTypes.out} />
+                    <CurrencySelect pocketDirection={CurrencyExchangeTypes.out} />
                 </Grid>
                 <Grid item>
                     <AmountInputField pocketDirection={CurrencyExchangeTypes.out} />

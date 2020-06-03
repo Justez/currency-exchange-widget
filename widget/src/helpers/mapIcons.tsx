@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { CurrencyMap } from '../types';
-import EuroIcon from '../assets/icons/euro';
-import Pound from '../assets/icons/pound';
-import Dollar from '../assets/icons/dollar';
-import Other from '../assets/icons/otherCurrency';
+import { CurrencyMap } from 'types';
+import EuroIcon from 'assets/icons/euro';
+import Pound from 'assets/icons/pound';
+import Dollar from 'assets/icons/dollar';
+import Other from 'assets/icons/otherCurrency';
 
-export default function mapCurrencyIcons(name: string) {
+export default function mapCurrencyIcons(name: CurrencyMap) {
     switch (name) {
         case CurrencyMap.euro:
             return <EuroIcon />;

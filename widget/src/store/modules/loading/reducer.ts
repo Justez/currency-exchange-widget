@@ -5,9 +5,9 @@ export interface DefaultState {
   [key: string]: boolean,
 }
 
-export const DEFAULT_STATE: DefaultState = {};
+export const defaultState: DefaultState = {};
 
-const reducer = (state: DefaultState = DEFAULT_STATE, action: AnyAction): DefaultState => {
+const reducer = (state: DefaultState = defaultState, action: AnyAction): DefaultState => {
   const { type } = action;
   const matches = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);
 

@@ -2,7 +2,7 @@ import { CurrencyMap } from './';
 
 export type Pocket = {
     currency: CurrencyMap;
-    sum: string;
+    sum: number;
     placedSum: number;
 }
 

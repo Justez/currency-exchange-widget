@@ -7,8 +7,8 @@ import { actions } from '.';
 export type DefaultState = Currencies;
 
 export const defaultState: DefaultState = {
-  in: CurrencyMap.dollar,
-  out: CurrencyMap.pound,
+  in: CurrencyMap.pound,
+  out: CurrencyMap.euro,
 };
 
 type Payload = any;
