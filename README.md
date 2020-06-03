@@ -45,6 +45,6 @@ React app is available in port 3000:
 * Currency rate view change: press the currency rate chip in the center of widget;
 * Reverse rate calculation;
 
-<img src="readme-assets/fetch_failure.png"> . 
-<img src="readme-assets/additional_features.png"> . 
-<img src="readme-assets/idle_state.png">
+<img width="400" height="500" src="readme-assets/fetch_failure.png"> . 
+<img width="400" height="500" src="readme-assets/additional_features.png"> . 
+<img width="400" height="500" src="readme-assets/idle_state.png">
