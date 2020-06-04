@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Out Currency template snapshots renders out-currency-template 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-1"
+>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-direction-xs-column"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item"
+        >
+          <div
+            className="MuiInputBase-root MuiInput-root MuiInput-underline"
+            onClick={[Function]}
+          >
+            <div
+              aria-haspopup="listbox"
+              aria-labelledby="choose-out-currency"
+              className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+              id="choose-out-currency"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              <h5
+                className="MuiTypography-root MuiTypography-h5"
+              >
+                EUR
+              </h5>
+            </div>
+            <input
+              onAnimationStart={[Function]}
+              type="hidden"
+              value="eur"
+            />
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSelect-icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="MuiGrid-root MuiGrid-item"
+        >
+          <p
+            className="MuiTypography-root makeStyles-balance-2 MuiTypography-body2"
+          >
+            Balance
+             
+            868.22
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root"
+              focusable="false"
+              style={
+                Object {
+                  "height": "15px",
+                  "marginBottom": "-2px",
+                  "width": "15px",
+                }
+              }
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15 18.5c-2.51 0-4.68-1.42-5.76-3.5h5.14c.38 0 .73-.21.89-.55.33-.66-.15-1.45-.89-1.45h-5.8c-.05-.33-.08-.66-.08-1s.03-.67.08-1h5.8c.38 0 .73-.21.89-.55.34-.67-.14-1.45-.89-1.45H9.24C10.32 6.92 12.5 5.5 15 5.5c1.25 0 2.42.36 3.42.97.5.31 1.15.26 1.57-.16.58-.58.45-1.53-.25-1.96C18.36 3.5 16.73 3 15 3c-3.92 0-7.24 2.51-8.48 6h-2.9c-.38 0-.73.21-.9.55-.33.67.15 1.45.9 1.45h2.44c-.04.33-.06.66-.06 1s.02.67.06 1H3.62c-.38 0-.73.21-.89.55-.34.67.14 1.45.89 1.45h2.9c1.24 3.49 4.56 6 8.48 6 1.74 0 3.36-.49 4.74-1.35.69-.43.82-1.39.24-1.97-.42-.42-1.07-.47-1.57-.15-.99.62-2.15.97-3.41.97z"
+              />
+            </svg>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline makeStyles-root-3 MuiInputBase-adornedStart MuiInputBase-adornedEnd"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root"
+          focusable="false"
+          style={
+            Object {
+              "height": "18px",
+            }
+          }
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13H5v-2h14v2z"
+          />
+        </svg>
+        <input
+          className="MuiInputBase-input MuiInput-input makeStyles-input-4 MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd"
+          disabled={false}
+          id="amount-input"
+          max={868.22}
+          maxLength={7}
+          min={0}
+          onAnimationStart={[Function]}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="number"
+          value={4}
+        />
+        <div
+          className="MuiInputAdornment-root MuiInputAdornment-positionEnd"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            style={
+              Object {
+                "height": "15px",
+                "marginBottom": "-2px",
+                "width": "15px",
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15 18.5c-2.51 0-4.68-1.42-5.76-3.5h5.14c.38 0 .73-.21.89-.55.33-.66-.15-1.45-.89-1.45h-5.8c-.05-.33-.08-.66-.08-1s.03-.67.08-1h5.8c.38 0 .73-.21.89-.55.34-.67-.14-1.45-.89-1.45H9.24C10.32 6.92 12.5 5.5 15 5.5c1.25 0 2.42.36 3.42.97.5.31 1.15.26 1.57-.16.58-.58.45-1.53-.25-1.96C18.36 3.5 16.73 3 15 3c-3.92 0-7.24 2.51-8.48 6h-2.9c-.38 0-.73.21-.9.55-.33.67.15 1.45.9 1.45h2.44c-.04.33-.06.66-.06 1s.02.67.06 1H3.62c-.38 0-.73.21-.89.55-.34.67.14 1.45.89 1.45h2.9c1.24 3.49 4.56 6 8.48 6 1.74 0 3.36-.49 4.74-1.35.69-.43.82-1.39.24-1.97-.42-.42-1.07-.47-1.57-.15-.99.62-2.15.97-3.41.97z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

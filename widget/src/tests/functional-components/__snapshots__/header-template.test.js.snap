@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header snapshots renders header 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-3"
+>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-flex-end"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10"
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-h6"
+      >
+        Exchange currencies
+      </h6>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1"
+    >
+      <button
+        className="MuiButtonBase-root MuiIconButton-root makeStyles-iconButton-1"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            style={
+              Object {
+                "height": "18px",
+                "marginTop": "-3px",
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"
+            />
+          </svg>
+        </span>
+      </button>
+      <span
+        className="MuiTypography-root makeStyles-label-2 MuiTypography-caption MuiTypography-noWrap"
+      >
+        place all
+      </span>
+    </div>
+  </div>
+</div>
+`;
