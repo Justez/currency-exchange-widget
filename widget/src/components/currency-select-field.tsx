@@ -58,7 +58,7 @@ const CurrencySelect = ({ actions, pockets, currencies, pocketDirection, isLoadi
                     autoWidth
                     disabled={isLoadingRates}
                     onChange={setSelectedCurrency}
-                    id="choose-out-currency"
+                    id={`choose-${pocketDirection}-currency`}
                     value={selectedCurrency}
                 >
                     {pockets.map(({ currency }) => (

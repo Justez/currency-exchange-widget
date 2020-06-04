@@ -37,13 +37,13 @@ const RateChip = ({ currencies, currencyRates, isLoadingRates }: Props) => {
     const toggleReverseRates = () => setReverse(!reverse);
 
     const normalRate = (
-        <Typography className={classes.label}>
+        <Typography test-id="rate-display" className={classes.label}>
             1{mapIcons(currencies.out)} = {currencyRates.rate}{mapIcons(currencies.in)}
         </Typography>
     );
 
     const rateReverse = (
-        <Typography className={classes.label}>
+        <Typography test-id="rate-display-reverse" className={classes.label}>
             {currencyRates.reverse}{mapIcons(currencies.out)} = 1{mapIcons(currencies.in)}
         </Typography>
     );
@@ -52,7 +52,7 @@ const RateChip = ({ currencies, currencyRates, isLoadingRates }: Props) => {
         ? <Loader size={15} thickness={5} />
         : (reverse ? rateReverse : normalRate)
 
-    const error = <Typography className={classes.label} variant="caption">unavailable</Typography>
+    const error = <Typography test-id="rate-display-error" className={classes.label} variant="caption">unavailable</Typography>
 
     return (
         <Chip

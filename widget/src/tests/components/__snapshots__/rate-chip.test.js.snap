@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RateChip component renders unavailable state correctly 1`] = `
+<div
+  className="MuiButtonBase-root MuiChip-root makeStyles-root-1 MuiChip-outlined MuiChip-clickable"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <svg
+    aria-hidden={true}
+    className="MuiSvgIcon-root"
+    focusable="false"
+    style={
+      Object {
+        "height": "24px",
+        "margin": "4px",
+        "width": "24px",
+      }
+    }
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"
+    />
+  </svg>
+  <span
+    className="MuiChip-label"
+  >
+    <span
+      className="MuiTypography-root makeStyles-label-2 MuiTypography-caption"
+      test-id="rate-display-error"
+    >
+      unavailable
+    </span>
+  </span>
+</div>
+`;
