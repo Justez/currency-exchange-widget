@@ -21,6 +21,8 @@ const reducer = handleActions<DefaultState, Payload>({
     assocPath([], { ...state, ...payload }, state),
   [actions.flipRates.toString()]: ((state) =>
     assocPath([], { rate: state.reverse, reverse: state.rate }, state)),
+  [actions.resetRates.toString()]: ((state) =>
+    assocPath([], defaultState, state)),
 },
   defaultState,
 );

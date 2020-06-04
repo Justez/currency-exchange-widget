@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { State } from 'store';
+import { Pockets, Currencies, CurrencyExchangeTypes } from 'types';
 import { actions as pocketActions } from 'store/modules/pockets';
 import { getLoadingStatus } from 'store/modules/loading/selectors';
 import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
@@ -12,7 +13,6 @@ import { actions as currencyRatesActions } from 'store/modules/currency-rates'
 import { getPockets, filterPocketByCurrency } from 'store/modules/pockets/selectors';
 import mapIcons from 'helpers/mapIcons';
 import parseNum from 'helpers/parseNum';
-import { Pockets, Currencies, CurrencyExchangeTypes } from 'types';
 import Plus from 'assets/icons/plus';
 import Minus from 'assets/icons/minus';
 

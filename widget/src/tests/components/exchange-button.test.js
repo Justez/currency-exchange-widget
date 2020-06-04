@@ -5,15 +5,15 @@ import renderer from 'react-test-renderer';
 import { act } from 'react-dom/test-utils';
 
 import store from 'store';
-import ExchangeButton from 'components/exchange-button';
 import { actions as pocketsActions } from 'store/modules/pockets';
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
+import ExchangeButton from 'components/exchange-button';
 
 const component = (
     <Provider store={store}>
         <ExchangeButton />
     </Provider>
-)
+);
 
 let wrapper;
 let button;

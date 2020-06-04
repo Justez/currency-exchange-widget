@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Chip, Typography } from '@material-ui/core';
-import { Currencies, CurrencyRates } from 'types';
-import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
-import { State } from 'store';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import TrendingUp from 'assets/icons/trend-up';
-import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
-import mapIcons from 'helpers/mapIcons';
+
+import { State } from 'store';
+import { Currencies, CurrencyRates } from 'types';
 import { getLoadingStatus } from 'store/modules/loading/selectors';
+import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
+import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
+import mapIcons from 'helpers/mapIcons';
 import Loader from 'components/loader';
+import TrendingUp from 'assets/icons/trend-up';
 
 interface StateProps {
     currencies: Currencies;

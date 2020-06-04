@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 
-import CurrencySelect from 'components/currency-select-field';
-import ExchangeButton from 'components/exchange-button';
 import { CurrencyExchangeTypes } from 'types';
+import ExchangeButton from 'components/exchange-button';
 import AmountInputField from 'components/amount-input-field';
+import CurrencySelect from 'components/currency-select-field';
 
 const InCurrencyTemplate = () => (
     <Box p={3} mt={2} pb={0}>

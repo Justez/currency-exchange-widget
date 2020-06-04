@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const FlipChip = ({ onFlip }: OwnProps) => {
     const classes = useStyles();
+    
     return (
         <Chip icon={<Flip />} className={classes.root} onClick={onFlip} variant="outlined" />
     )

@@ -2,13 +2,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
+import store from 'store';
+import { actions as currencyActions } from 'store/modules/currencies';
+import { defaultState as defaultCurrencyState } from 'store/modules/currencies/reducer';
 import FlipChip from 'components/flip-chip';
 import CurrencySelects from './currency-select.test';
 import AmountInputs from './amount-input-field.test';
-import { actions as currencyActions } from 'store/modules/currencies';
-import { defaultState as defaultCurrencyState } from 'store/modules/currencies/reducer';
-
-import store from 'store';
 
 const action = jest.fn();
 
@@ -21,9 +20,7 @@ describe('FlipChip component', () => {
   });
 
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<FlipChip onFlip={action} />)
-      .toJSON();
+    const tree = renderer.create(<FlipChip onFlip={action} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

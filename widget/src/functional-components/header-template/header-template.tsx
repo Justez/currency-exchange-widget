@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Box, Grid, Typography, IconButton } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Dispatch, bindActionCreators } from 'redux';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Box, Grid, Typography, IconButton } from '@material-ui/core';
 
 import { actions as pocketsActions } from 'store/modules/pockets';
 import PlaceAllIcon from 'assets/icons/placeAll';
@@ -33,7 +33,7 @@ const HeaderTemplate = ({ actions }: DispatchProps) => {
         <Box width="100%" textAlign="center" p={2}>
             <Grid container justify="flex-end">
                 <Grid item xs={10}>
-                    <Typography variant="h6">Exchange currencies</Typography>
+                    <Typography variant="h6">{'Exchange currencies'}</Typography>
                 </Grid>
                 <Grid item xs={1}>
                     <IconButton onClick={handlePlaceAll} className={classes.iconButton}>

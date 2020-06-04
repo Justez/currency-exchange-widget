@@ -29,9 +29,9 @@ describe('RateChip component', () => {
     });
 
     it('shows unavailable', () => {
-        label = chip.find('span[test-id="rate-display-error"]')
+        label = chip.find('span[test-id="rate-display-error"]');
         expect(label.props().children).toBe('unavailable');
-    })
+    });
 
     it('renders unavailable state correctly', () => {
         const tree = renderer.create(component).toJSON();

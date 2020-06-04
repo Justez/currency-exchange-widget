@@ -2,9 +2,6 @@ import { CurrencyMap } from 'types';
 
 export type CurrencyRateResponse = {
   data: {
-    disclaimer: string;
-    license: URL;
-    timestamp: number;
     base: string;
     rates: {
       [key in CurrencyMap]: number;

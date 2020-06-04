@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import { Button } from '@material-ui/core';
 
+import { State } from 'store';
+import { CurrencyRates } from 'types';
 import { actions as pocketsActions } from 'store/modules/pockets';
 import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import { getLoadingStatus } from 'store/modules/loading/selectors';
-import { State } from 'store';
-import { CurrencyRates } from 'types';
 import { getCurrencyRates } from 'store/modules/currency-rates/selectors';
 
 interface DispatchProps {
@@ -31,7 +31,7 @@ const InCurrencyTemplate = ({ actions, isSubmittingExchange, currencyRates, isLo
 
     return (
         <Button fullWidth disabled={disabled} variant="contained" onClick={handleExchange} color="secondary">
-            Exchange
+            {'Exchange'}
         </Button>
     );
 }

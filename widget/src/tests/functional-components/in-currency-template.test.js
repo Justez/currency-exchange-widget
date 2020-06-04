@@ -9,12 +9,11 @@ const component = (
     <Provider store={store}>
         <InCurrencyTemplate />
     </Provider>
-)
+);
 
 describe('In Currency template snapshots', () => {
     it('renders in-currency-template', () => {
         const tree = renderer.create(component).toJSON();
-
         expect(tree).toMatchSnapshot();
     });
 });

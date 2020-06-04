@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Dispatch, bindActionCreators } from 'redux';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import { actions as currenciesActions } from 'store/modules/currencies';
+import { actions as currencyRatesActions } from 'store/modules/currency-rates';
 import RateChip from 'components/rate-chip';
 import FlipChip from 'components/flip-chip';
 import Header from 'functional-components/header-template';
-import OutCurrencyTemplate from 'functional-components/out-currency-template';
 import InCurrencyTemplate from 'functional-components/in-currency-template';
+import OutCurrencyTemplate from 'functional-components/out-currency-template';
 
 interface DispatchProps {
   actions: {

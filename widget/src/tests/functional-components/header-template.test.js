@@ -9,12 +9,11 @@ const component = (
     <Provider store={store}>
         <Header />
     </Provider>
-)
+);
 
 describe('Header snapshots', () => {
     it('renders header', () => {
         const tree = renderer.create(component).toJSON();
-
         expect(tree).toMatchSnapshot();
     });
 });

@@ -46,8 +46,8 @@ exports[`Header snapshots renders header 1`] = `
             focusable="false"
             style={
               Object {
-                "height": "18px",
-                "marginTop": "-3px",
+                "height": "3vh",
+                "marginTop": "-0.7vh",
               }
             }
             viewBox="0 0 24 24"

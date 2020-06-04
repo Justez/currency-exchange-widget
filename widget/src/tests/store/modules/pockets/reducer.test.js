@@ -1,8 +1,6 @@
-import { createAction } from 'redux-actions';
-
-import { actions as pocketActions } from 'store/modules/pockets';
-import reducer from 'store/modules/pockets/reducer';
 import { CurrencyMap } from 'types';
+import reducer from 'store/modules/pockets/reducer';
+import { actions as pocketActions } from 'store/modules/pockets';
 
 const defaultState = [
     {

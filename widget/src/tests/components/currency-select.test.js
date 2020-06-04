@@ -1,16 +1,15 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { act } from 'react-dom/test-utils';
 
 import store from 'store';
-import CurrencySelect from 'components/currency-select-field';
-import { actions } from 'store/modules/currency-rates';
-import { actions as currencyActions } from 'store/modules/currencies';
-
 import { CurrencyExchangeTypes, CurrencyMap } from 'types';
+import { actions } from 'store/modules/currency-rates';
 import { defaultState } from 'store/modules/currencies/reducer';
+import { actions as currencyActions } from 'store/modules/currencies';
+import CurrencySelect from 'components/currency-select-field';
 
 const component = (
     <Provider store={store}>
@@ -24,7 +23,7 @@ let firstInput, secondInput;
 
 describe('Currency Select integration', () => {
     beforeAll(() => {
-        store.dispatch(actions.setCurrencyRates({ rate: 1.22, reverse: 0.88 }))
+        store.dispatch(actions.setCurrencyRates({ rate: 1.22, reverse: 0.88 }));
         wrapper = mount(component);
         firstInput = wrapper.find('#choose-out-currency').first();
         secondInput = wrapper.find('#choose-in-currency').first();

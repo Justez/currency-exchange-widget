@@ -1,19 +1,20 @@
 import React, { ChangeEvent } from 'react';
 import { connect } from 'react-redux';
+import { find, propEq, pathOr, pipe } from 'ramda';
 import { Dispatch, bindActionCreators } from 'redux';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { actions as currencyRatesActions } from 'store/modules/currency-rates';
-import { actions as currencyActions } from 'store/modules/currencies';
-import { actions as pocketsActions } from 'store/modules/pockets';
 import { Select, MenuItem, Typography, Grid } from '@material-ui/core';
-import { Pockets, Currencies, CurrencyExchangeTypes } from 'types';
-import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
-import { getPockets } from 'store/modules/pockets/selectors';
+
 import { State } from 'store';
-import { find, propEq, pathOr, pipe } from 'ramda';
-import mapIcons from 'helpers/mapIcons';
+import { Pockets, Currencies, CurrencyExchangeTypes } from 'types';
+import { actions as pocketsActions } from 'store/modules/pockets';
+import { actions as currencyActions } from 'store/modules/currencies';
+import { actions as currencyRatesActions } from 'store/modules/currency-rates';
+import { getPockets } from 'store/modules/pockets/selectors';
 import { getLoadingStatus } from 'store/modules/loading/selectors';
+import { getSelectedCurrencies } from 'store/modules/currencies/selectors';
 import Loader from 'components/loader';
+import mapIcons from 'helpers/mapIcons';
 
 interface DispatchProps {
     actions: {

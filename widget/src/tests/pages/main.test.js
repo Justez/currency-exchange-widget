@@ -9,12 +9,11 @@ const component = (
     <Provider store={store}>
         <MainPage />
     </Provider>
-)
+);
 
 describe('Main Page snapshots', () => {
     it('renders main page', () => {
         const tree = renderer.create(component).toJSON();
-
         expect(tree).toMatchSnapshot();
     });
 });

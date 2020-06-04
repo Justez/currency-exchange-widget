@@ -1,11 +1,11 @@
 import React from 'react';
 
-import EuroIcon from 'assets/icons/euro';
+import { CurrencyMap } from 'types';
 import Pound from 'assets/icons/pound';
 import Dollar from 'assets/icons/dollar';
+import EuroIcon from 'assets/icons/euro';
 import Other from 'assets/icons/otherCurrency';
 import mapIcons from 'helpers/mapIcons';
-import { CurrencyMap } from 'types';
 
 describe('mapIcons helper', () => {
     test('retrieves euro icon', () => {
