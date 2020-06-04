@@ -18,23 +18,21 @@ Widget loaded in iframe is available on:
 React app is available in port 3000: 
 * http://localhost:3000/
 
-### Test:
-`yarn test`
-
-### Build to production:
-`yarn build`
+### Tests:
+`yarn test:client`
 
 ## Technical and architectural decisions: 
 
 * Autonomous data fetching;
-* Encapsulated calculation logic running in the background;
-* Separated UI and data handling;
-* Failure handling (disabled due to limited API availability on lines [here ](widget/src/store/modules/currency-rates/sagas.ts#L44) and [here ](widget/src/store/modules/currency-rates/sagas.ts#L45));
+* Encapsulated calculation logic running in background workers;
+* Completely separated UI from data handling;
+* Automatic retries (disabled due to limited API availability on lines [here ](widget/src/store/modules/currency-rates/sagas.ts#L44) and [here ](widget/src/store/modules/currency-rates/sagas.ts#L45));
 * Concurrent request handling using redux-sagas;
+* Debouncing agains multiple rate requests to the API;
 * Direct exchange transfers with a possibility to integrate API. Disabling of user actions' implemented;
 * Input formatting and on-app format handling;
 * React.js, redux, redux-saga middleware and typescript stack;
-
+* Snapshot, integration and unit tests;
 
 ## Functionality: 
 
@@ -44,7 +42,25 @@ React app is available in port 3000:
 * Pocket 'flip' - replace pockets vertically;
 * Currency rate view change: press the currency rate chip in the center of widget;
 * Reverse rate calculation;
+* Actions disabled if network idle or action is submitted;
+* Out balance highlight;
+* If currencies are flipped, Out placed sum is checked against the pocket balance;
+* 2 digit placed sum float and up to 4 digit currency rate display;
 
-<img width="400" height="500" src="readme-assets/fetch_failure.png"> . 
-<img width="400" height="500" src="readme-assets/additional_features.png"> . 
-<img width="400" height="500" src="readme-assets/idle_state.png">
+## API integration notes: 
+
+Used source: https://openexchangerates.org.
+
+### ⚠️ Things to note: 
+* Rates provided by API are only USD based.
+* 1000 calls/month limit per free API subscription. Save the dev environment [commenting out this line](widget/src/api/currency-rates/index.ts#L9).
+
+# Screenshots:
+
+* Network error state;
+* Idle state;
+* Additional features' state;
+
+<img width="400" height="500" src="readme-assets/fetch_failure.png">  
+<img width="400" height="500" src="readme-assets/idle_state.png">   
+<img width="400" height="500" src="readme-assets/additional_features.png"> 
