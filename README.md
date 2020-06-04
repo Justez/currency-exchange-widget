@@ -11,9 +11,7 @@
 `yarn run-widget`
 
 Widget loaded in iframe is available on:
-*  http://127.0.0.1:8081
-*  http://192.168.8.152:8081
-*  http://192.168.8.106:8081
+*  http://127.0.0.1:8080
 
 React app is available in port 3000: 
 * http://localhost:3000/
@@ -53,7 +51,7 @@ Used source: https://openexchangerates.org.
 
 ### ⚠️ Things to note: 
 * Rates provided by API are only USD based.
-* 1000 calls/month limit per free API subscription. Save the dev environment [commenting out this line](widget/src/api/currency-rates/index.ts#L9).
+* 1000 calls/month limit per free API subscription. Save the dev environment 🌱[commenting out this line](widget/src/api/currency-rates/index.ts#L9).
 
 # Screenshots:
 
